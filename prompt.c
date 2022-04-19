@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <editline/readline.h>
+#include "readline.h"
 
 int main(int argc, char** argv) {
 
