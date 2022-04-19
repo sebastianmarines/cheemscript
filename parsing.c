@@ -6,6 +6,7 @@
 
 long eval(mpc_ast_t *t);
 long eval_op(long x, char *op, long y);
+long eval_op_unary(long x, char *op);
 
 int main(int argc, char **argv)
 {
@@ -73,6 +74,12 @@ long eval(mpc_ast_t *t)
         x = eval_op(x, op, eval(t->children[i]));
         i++;
     }
+
+    if (i == 3)
+    {
+        x = eval_op_unary(x, op);
+    }
+
     return x;
 }
 
@@ -105,6 +112,15 @@ long eval_op(long x, char *op, long y)
     if (strcmp(op, "max") == 0)
     {
         return (x > y) ? x : y;
+    }
+    return 0;
+}
+
+long eval_op_unary(long x, char *op)
+{
+    if (strcmp(op, "-") == 0)
+    {
+        return -x;
     }
     return 0;
 }
