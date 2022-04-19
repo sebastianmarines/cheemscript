@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "readline.h"
+#include "mpc.h"
 
 int main(int argc, char** argv) {
 
