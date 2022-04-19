@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     mpca_lang(MPCA_LANG_DEFAULT,
               " \
          number : /-?[0-9]+/ ; \
-         operator : '+' | '-' | '*' | '/' | '%' ; \
+         operator : '+' | '-' | '*' | '/' | '%' | \"min\" | \"max\" ; \
          expr : <number> | '(' <operator> <expr>+ ')' ; \
          cheemscript : /^/ <operator> <expr>+ /$/ ; \
         ",
@@ -97,6 +97,14 @@ long eval_op(long x, char *op, long y)
     if (strcmp(op, "%") == 0)
     {
         return x % y;
+    }
+    if (strcmp(op, "min") == 0)
+    {
+        return (x < y) ? x : y;
+    }
+    if (strcmp(op, "max") == 0)
+    {
+        return (x > y) ? x : y;
     }
     return 0;
 }
